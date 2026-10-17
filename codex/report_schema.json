@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "summary", "files_changed", "commands_run", "results", "deviations_from_spec", "workarounds_or_fallbacks", "assumptions", "open_issues"],
+  "properties": {
+    "status": {"type": "string", "enum": ["done", "partial", "blocked"]},
+    "summary": {"type": "string"},
+    "files_changed": {
+      "type": "array",
+      "items": {"type": "object", "additionalProperties": false, "required": ["path", "why"],
+        "properties": {"path": {"type": "string"}, "why": {"type": "string"}}}
+    },
+    "commands_run": {
+      "type": "array",
+      "items": {"type": "object", "additionalProperties": false, "required": ["cmd", "exit_code", "purpose"],
+        "properties": {"cmd": {"type": "string"}, "exit_code": {"type": "integer"}, "purpose": {"type": "string"}}}
+    },
+    "results": {
+      "type": "array",
+      "items": {"type": "object", "additionalProperties": false, "required": ["claim", "evidence"],
+        "properties": {"claim": {"type": "string"}, "evidence": {"type": "string"}}}
+    },
+    "deviations_from_spec": {"type": "array", "items": {"type": "string"}},
+    "workarounds_or_fallbacks": {"type": "array", "items": {"type": "string"}},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "open_issues": {"type": "array", "items": {"type": "string"}}
+  }
+}
